@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Isa0091.Domain.Context" Version="1.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.15" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PharmacyLocation.Core\PharmacyLocation.Core.csproj" />
+  </ItemGroup>
+
+</Project>
