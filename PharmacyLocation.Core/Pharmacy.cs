@@ -25,5 +25,10 @@ namespace PharmacyLocation.Core
         /// Hubicacion de la farmacia
         /// </summary>
         public LocationVo Location { get; set; }
+
+        /// <summary>
+        /// Imagen que hace referencia la producto
+        /// </summary>
+        public string? UrlImage { get; set; }
     }
 }

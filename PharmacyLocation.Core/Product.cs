@@ -19,5 +19,9 @@ namespace PharmacyLocation.Core
         /// </summary>
         public DescriptionVo Description { get; set; }
 
+        /// <summary>
+        /// Imagen que hace referencia la producto
+        /// </summary>
+        public string? UrlImage { get; set; }
     }
 }

@@ -20,6 +20,10 @@ namespace PharmacyLocation.Data.Mapping
                  .HasMaxLength(Constants.KeyLength)
                  .IsRequired();
 
+
+            builder.Property(x => x.UrlImage)
+                 .HasMaxLength(500);
+
             builder.OwnsOne(x => x.Description).Property(x => x.Name).HasMaxLength(300).IsRequired();
             builder.OwnsOne(x => x.Description).Property(x => x.Description).HasMaxLength(500);
 
