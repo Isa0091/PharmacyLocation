@@ -1,4 +1,5 @@
 using Isa0091.Domain.Mvc.Filters;
+using ManagerEasyTransportTimeMapbox.Injection;
 using MediatR;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.EntityFrameworkCore;
@@ -7,6 +8,7 @@ using PharmacyLocation.Core.Provider.PharmacyNearbyProduct;
 using PharmacyLocation.Data;
 using PharmacyLocation.Data.Repos;
 using PharmacyLocation.Handlers.Helpers;
+using PharmacyLocation.Handlers.MappingProfiles;
 using PharmacyLocation.Settings;
 using Serilog;
 using System.Reflection;
@@ -56,8 +58,11 @@ builder.Services.AddSwaggerGen();
 
 
 // automapper
-//builder.Services.AddAutoMapper(typeof(AccountProfile));
+builder.Services.AddAutoMapper(typeof(PharmacyProfile));
 
+string? mapBoxToken = builder.Configuration["MapboxToken"];
+
+builder.Services.AddManagerEasyTransportTimeMapbox(mapBoxToken);
 
 var app = builder.Build();
 
