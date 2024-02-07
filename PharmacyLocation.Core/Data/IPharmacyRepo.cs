@@ -11,5 +11,11 @@ namespace PharmacyLocation.Core.Data
     /// </summary>
     public interface IPharmacyRepo : IBaseRepo<Pharmacy>
     {
+        /// <summary>
+        /// Retorna un lsitado de farmacias
+        /// </summary>
+        /// <param name="pharmaciesIds"></param>
+        /// <returns></returns>
+        Task<List<Pharmacy>> GetPharmacyAsync(List<string> pharmaciesIds);
     }
 }

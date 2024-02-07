@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace PharmacyLocation.Data.Repos
 {
@@ -16,5 +17,9 @@ namespace PharmacyLocation.Data.Repos
             _db = db;
         }
 
+        public async Task<List<Pharmacy>> GetPharmacyAsync(List<string> pharmaciesIds)
+        {
+            return await _db.Pharmacies.Where(z=> pharmaciesIds.Contains(z.Id)).ToListAsync();
+        }
     }
 }

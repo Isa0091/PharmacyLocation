@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace PharmacyLocation.Core.Queries
 {
-    public class GetSearchPharmacyProduct : QueryBase<List<PharmacyProduct>>
+    public class GetPharmaciesByIds : QueryBase<List<Pharmacy>>
     {
         /// <summary>
         /// 
         /// </summary>
-        public string ProductId { get; set; }
+       public  List<string> PharmaciesIds {  get; set; }
     }
 }
