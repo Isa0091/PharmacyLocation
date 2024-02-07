@@ -12,6 +12,6 @@ namespace PharmacyLocation.Core.Queries
         /// <summary>
         /// Identificador del usuario
         /// </summary>
-        public string IdUser { get; set; }
+        public string UserId { get; set; }
     }
 }

@@ -10,6 +10,6 @@ namespace PharmacyLocation.Core.Queries
     public class GetSearchPharmacyProduct : QueryBase<List<PharmacyProduct>>
     {
 
-        public string IdProduct { get; set; }
+        public string ProductId { get; set; }
     }
 }

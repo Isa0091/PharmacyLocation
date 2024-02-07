@@ -15,12 +15,12 @@ namespace PharmacyLocation.Core
         /// <summary>
         /// Identificador del producto
         /// </summary>
-        public string IdProduct { get; set; }
+        public string ProductId { get; set; }
 
         /// <summary>
         /// Identificador del usuario
         /// </summary>
-        public string IdUser { get; set; }
+        public string UserId { get; set; }
 
         /// <summary>
         /// Para la llave foranea del producto

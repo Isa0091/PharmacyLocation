@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PharmacyLocation.Outputs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,5 +12,13 @@ namespace PharmacyLocation.Core.Data
     /// </summary>
     public interface IProductRepo : IBaseRepo<Product>
     {
+        /// <summary>
+        /// Obtengo un listado paginado de productos
+        /// </summary>
+        /// <param name="nameContains"></param>
+        /// <param name="page"></param>
+        /// <param name="itemsPerPage"></param>
+        /// <returns></returns>
+        Task<PaginatedListOutput<Product>> GetPaginatedProductsAsync(string nameContains, int page, int itemsPerPage);
     }
 }

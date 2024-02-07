@@ -12,7 +12,7 @@ namespace PharmacyLocation.Core.Commands
         /// <summary>
         /// Identificador del producto
         /// </summary>
-        public string IdProduct { get; set; }
+        public string ProductId { get; set; }
 
         /// <summary>
         /// Identificador del usuario

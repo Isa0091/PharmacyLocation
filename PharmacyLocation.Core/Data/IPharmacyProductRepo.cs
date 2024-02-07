@@ -11,5 +11,11 @@ namespace PharmacyLocation.Core.Data
     /// </summary>
     public interface IPharmacyProductRepo : IBaseRepo<PharmacyProduct>
     {
+        /// <summary>
+        /// Obtengo el listado de productos  farmacia donde los productos sean los que envio
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <returns></returns>
+        Task<List<PharmacyProduct>> GetPharmacyProductsByIdAsync(string productId);
     }
 }

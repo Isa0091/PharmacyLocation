@@ -13,17 +13,17 @@ namespace PharmacyLocation.Data.Mapping
     {
         public void Configure(EntityTypeBuilder<FavoriteUserProduct> builder)
         {
-            builder.HasKey(x => new { x.IdProduct, x.IdUser});
+            builder.HasKey(x => new { x.ProductId, x.UserId});
 
-            builder.Property(x => x.IdProduct)
+            builder.Property(x => x.ProductId)
                  .HasMaxLength(Constants.KeyLength)
                  .IsRequired();
 
-            builder.Property(x => x.IdUser)
+            builder.Property(x => x.UserId)
                 .HasMaxLength(Constants.KeyUserId)
                 .IsRequired();
 
-            builder.HasOne("Product").WithMany().HasForeignKey("IdProduct").OnDelete(DeleteBehavior.Restrict);
+            builder.HasOne("Product").WithMany().HasForeignKey("ProductId").OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

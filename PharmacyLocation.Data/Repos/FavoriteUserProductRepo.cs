@@ -1,4 +1,5 @@
-﻿using PharmacyLocation.Core;
+﻿using Microsoft.EntityFrameworkCore;
+using PharmacyLocation.Core;
 using PharmacyLocation.Core.Data;
 using System;
 using System.Collections.Generic;
@@ -16,5 +17,15 @@ namespace PharmacyLocation.Data.Repos
             _db = db;
         }
 
+
+        public  async Task<FavoriteUserProduct?> GetFavoriteUserProductByIdAsync(string userId,string productId)
+        {
+            return await _db.FavoriteUserProducts.SingleOrDefaultAsync(z=> z.ProductId == productId && z.UserId == userId);
+        }
+
+        public async Task<List<FavoriteUserProduct>> GetFavoritesUserProductsAsync(string userId)
+        {
+            return await _db.FavoriteUserProducts.Where(z =>  z.UserId == userId).ToListAsync();
+        }
     }
 }

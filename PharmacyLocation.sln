@@ -5,11 +5,11 @@ VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PharmacyLocation", "PharmacyLocation\PharmacyLocation.csproj", "{7A20ABC5-4360-4039-BC1D-8406B3AAAD89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PharmacyLocation.Core", "PharmacyLocation.Core\PharmacyLocation.Core.csproj", "{1FDE1AC8-1D57-40D9-8D2B-145175FC3953}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PharmacyLocation.Core", "PharmacyLocation.Core\PharmacyLocation.Core.csproj", "{1FDE1AC8-1D57-40D9-8D2B-145175FC3953}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PharmacyLocation.Data", "PharmacyLocation.Data\PharmacyLocation.Data.csproj", "{B9FFFFD0-D83B-40E3-AD16-EC25F8666296}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PharmacyLocation.Data", "PharmacyLocation.Data\PharmacyLocation.Data.csproj", "{B9FFFFD0-D83B-40E3-AD16-EC25F8666296}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PharmacyLocation.Handlers", "PharmacyLocation.Handlers\PharmacyLocation.Handlers.csproj", "{71FCF654-90BB-4B1B-B58E-37C84CD8A180}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PharmacyLocation.Handlers", "PharmacyLocation.Handlers\PharmacyLocation.Handlers.csproj", "{71FCF654-90BB-4B1B-B58E-37C84CD8A180}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

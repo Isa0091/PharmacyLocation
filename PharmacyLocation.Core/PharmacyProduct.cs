@@ -21,6 +21,11 @@ namespace PharmacyLocation.Core
         public string IdPharmacy { get; set; }
 
         /// <summary>
+        /// Indica la cantidad de productos disponibles
+        /// </summary>
+        public int Stock { get; set; }
+
+        /// <summary>
         /// para la llave foranea
         /// </summary>
         private Product Product { get; set; }
