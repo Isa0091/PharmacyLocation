@@ -29,6 +29,12 @@ namespace PharmacyLocation.Data.Repos
             return Task.CompletedTask;
         }
 
+        public Task RemoveAsync(TEntity entidad)
+        {
+            Db.Set<TEntity>().Remove(entidad);
+            return Task.CompletedTask;
+        }
+
         public async Task SaveChangesAsync()
         {
             await Db.SaveChangesAsync();

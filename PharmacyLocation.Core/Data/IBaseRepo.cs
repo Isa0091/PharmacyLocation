@@ -27,6 +27,14 @@ namespace PharmacyLocation.Core.Data
         /// <param name="entidad"></param>
         /// <returns></returns>
         Task UpdateAsync(TEntity entidad);
+
+        /// <summary>
+        /// Remueve unelemento
+        /// </summary>
+        /// <param name="entidad"></param>
+        /// <returns></returns>
+        Task RemoveAsync(TEntity entidad);
+
         /// <summary>
         /// Guarda los cambios
         /// </summary>
