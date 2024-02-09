@@ -2,6 +2,7 @@
 using ManagerEasyTransportTimeMapbox.Data;
 using ManagerEasyTransportTimeMapbox.Dto.Input;
 using ManagerEasyTransportTimeMapbox.Dto.Output;
+using PharmacyLocation.Core;
 using PharmacyLocation.Core.Helper.PharmacyNearbyProduct;
 using PharmacyLocation.Core.Provider.PharmacyNearbyProduct;
 using PharmacyLocation.Outputs;
@@ -68,9 +69,9 @@ namespace PharmacyLocation.Handlers.Helpers
                 {
                     PharmacyOutput = pharmacy,
                     DistanceInMetersDriving = transportTimeOutputDriving.DistanceInMeters,
-                    EstimatedTravelTimeDriving = transportTimeOutputDriving.TravelTime.ToString(@"d\.hh\:mm\:ss"),
+                    EstimatedTravelTimeDriving = transportTimeOutputDriving.TravelTime.TimeSpanToFriendlyString(),
                     DistanceInMetersWalking = transportTimeOutputWalking.DistanceInMeters,
-                    EstimatedTravelTimeWalking = transportTimeOutputWalking.TravelTime.ToString(@"d\.hh\:mm\:ss"),
+                    EstimatedTravelTimeWalking = transportTimeOutputWalking.TravelTime.TimeSpanToFriendlyString(),
                 };
 
                 pharmacyNearbyProducts.Add(pharmacyNearbyProduct);
