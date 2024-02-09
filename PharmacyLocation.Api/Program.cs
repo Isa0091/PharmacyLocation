@@ -1,3 +1,5 @@
+using Isa0091.Domain.Context.ServicesBusSenders;
+using Isa0091.Domain.ContextInjection;
 using Isa0091.Domain.Mvc.Filters;
 using ManagerEasyTransportTimeMapbox.Injection;
 using MediatR;
@@ -30,8 +32,6 @@ builder.Services.AddDbContext<PharmacyLocationContext>(options =>
 
 });
 
-//Profiles
-//builder.Services.AddAutoMapper(typeof(InvoiceAccountProfile));
 
 
 //Repos
@@ -46,12 +46,19 @@ builder.Services.AddScoped<IPharmacyNearbyProductHelper, PharmacyNearbyProductHe
 builder.Services.AddMediatR(new Assembly[] { typeof(PharmacyLocation.Handlers.DummyMarker).Assembly });
 builder.Services.Configure<DefaultPaginationSettings>(builder.Configuration.GetSection(nameof(DefaultPaginationSettings)));
 
+IntegrationEventTopicConfiguration eventConfig = builder.Configuration
+          .GetSection(nameof(IntegrationEventTopicConfiguration)).Get<IntegrationEventTopicConfiguration>();
+
+builder.Services.AddServiceBusIntegrationEventSender(eventConfig, typeof(PharmacyLocation.LocationVo).Assembly);
+
+
 
 builder.Services.AddControllers(o => o.Filters.Add(new ApiExceptionFilter()))
                 .AddJsonOptions(options =>
                 {
                     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
                 });
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -59,6 +66,8 @@ builder.Services.AddSwaggerGen();
 
 // automapper
 builder.Services.AddAutoMapper(typeof(PharmacyProfile));
+builder.Services.AddAutoMapper(typeof(ProductProfile));
+builder.Services.AddAutoMapper(typeof(UserProfile));
 
 string? mapBoxToken = builder.Configuration["MapboxToken"];
 

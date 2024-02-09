@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="Isa0091.Domain.ContextInjection" Version="1.0.3" />
     <PackageReference Include="Isa0091.Domain.Mvc" Version="1.0.1" />
     <PackageReference Include="ManagerEasyTransportTimeMapbox.Injection" Version="1.0.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
