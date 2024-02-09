@@ -13,7 +13,7 @@ namespace PharmacyLocation.Core.Queries
         /// <summary>
         /// Producto que contenga dicho nombre
         /// </summary>
-        public string NameContains { get; set; }
+        public string? NameContains { get; set; }
 
         /// <summary>
         /// La pagina que se quiere navegar
