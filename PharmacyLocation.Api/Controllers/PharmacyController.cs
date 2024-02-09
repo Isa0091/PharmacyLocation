@@ -88,7 +88,7 @@ namespace PharmacyLocation.Api.Controllers
                 }
             }
 
-            return Ok(pharmacyProducts);
+            return Ok(pharmacyProductOutputs);
         }
     }
 }

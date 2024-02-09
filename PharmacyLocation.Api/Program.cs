@@ -13,6 +13,7 @@ using PharmacyLocation.Handlers.Helpers;
 using PharmacyLocation.Handlers.MappingProfiles;
 using PharmacyLocation.Settings;
 using Serilog;
+using System.Globalization;
 using System.Reflection;
 using System.Text.Json.Serialization;
 
@@ -32,7 +33,9 @@ builder.Services.AddDbContext<PharmacyLocationContext>(options =>
 
 });
 
-
+CultureInfo culture = new CultureInfo("en-US");
+Thread.CurrentThread.CurrentCulture = culture;
+Thread.CurrentThread.CurrentUICulture = culture;
 
 //Repos
 builder.Services.AddScoped<IFavoriteUserProductRepo, FavoriteUserProductRepo>();

@@ -13,6 +13,8 @@ namespace PharmacyLocation.Handlers.MappingProfiles
 
             CreateMap<PharmacyNearbyProductOutput, PharmacyProductOutput>()
                .ForMember(x => x.Stock, opt => opt.Ignore());
+
+            CreateMap<Pharmacy, PharmacyOutput>();
         }
     }
 }
