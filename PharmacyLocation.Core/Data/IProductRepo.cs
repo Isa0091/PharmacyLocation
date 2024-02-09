@@ -27,5 +27,12 @@ namespace PharmacyLocation.Core.Data
         /// <param name="id"></param>
         /// <returns></returns>
         Task<Product> GetByIdAsync(string id);
+
+        /// <summary>
+        /// Obtengo los productos por sus identificadores
+        /// </summary>
+        /// <param name="ids"></param>
+        /// <returns></returns>
+        Task<List<Product>> GetByIdsAsync(List<string> ids);
     }
 }

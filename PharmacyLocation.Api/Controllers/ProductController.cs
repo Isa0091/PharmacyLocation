@@ -35,7 +35,7 @@ namespace PharmacyLocation.Api.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ApiExceptionResult))]
         [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ApiExceptionResult))]
         [HttpGet()]
-        public async Task<IActionResult> GetSearchPharmacyProduct([FromQuery] string NameContains, [FromQuery] int? Page, [FromQuery] int? ItemsPerPage)
+        public async Task<IActionResult> GetSearchProduct([FromQuery] string NameContains, [FromQuery] int? Page, [FromQuery] int? ItemsPerPage)
         {
 
             GetSearchProduct getSearchProduct = new GetSearchProduct()
@@ -57,7 +57,7 @@ namespace PharmacyLocation.Api.Controllers
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ApiExceptionResult))]
         [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ApiExceptionResult))]
-        [HttpGet("id")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetProductById([FromRoute] string id)
         {
 

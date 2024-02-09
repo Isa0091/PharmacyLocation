@@ -41,5 +41,10 @@ namespace PharmacyLocation.Data.Repos
         {
             return await _db.Products.SingleAsync(x => x.Id == id);
         }
+
+        public async Task<List<Product>> GetByIdsAsync(List<string> ids)
+        {
+            return await _db.Products.Where(x =>  ids.Contains(x.Id)).ToListAsync();
+        }
     }
 }

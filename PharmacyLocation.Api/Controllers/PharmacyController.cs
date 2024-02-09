@@ -42,7 +42,7 @@ namespace PharmacyLocation.Api.Controllers
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ApiExceptionResult))]
         [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ApiExceptionResult))]
-        [HttpGet("/products/{id}")]
+        [HttpGet("products/{id}")]
         public async Task<IActionResult> GetSearchPharmacyProduct([FromRoute] string id, double latitude, double longitude, double? presicion)
         {
             GetSearchPharmacyProduct getSearchPharmacyProducts = new GetSearchPharmacyProduct()
