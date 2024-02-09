@@ -52,5 +52,25 @@ namespace PharmacyLocation.Api.Controllers
 
             return Ok(paginatedListProductOutput);
         }
+
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ProductOutput))]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ApiExceptionResult))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ApiExceptionResult))]
+        [HttpGet("id")]
+        public async Task<IActionResult> GetProductById([FromRoute] string id)
+        {
+
+            GetProductById getProductBy = new GetProductById()
+            {
+                ProductId= id
+            };
+
+            Product product = await _mediator.Send(getProductBy);
+
+            ProductOutput productOutput = _mapper.Map<ProductOutput>(getProductBy);
+
+            return Ok(productOutput);
+        }
     }
 }

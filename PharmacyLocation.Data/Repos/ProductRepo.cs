@@ -36,5 +36,10 @@ namespace PharmacyLocation.Data.Repos
 
             return new PaginatedListOutput<Product>(items, totalItems, page, itemsPerPage);
         }
+
+        public async Task<Product> GetByIdAsync(string id)
+        {
+            return await _db.Products.SingleAsync(x => x.Id == id);
+        }
     }
 }
