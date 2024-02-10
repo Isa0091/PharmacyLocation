@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PharmacyLocation.Outputs
 {
-    public class PharmacyProductOutput
+    public class PharmacyLocationOutput
     {
         /// <summary>
         /// Datos de la farmacia
@@ -29,13 +29,18 @@ namespace PharmacyLocation.Outputs
         public double DistanceInMetersDriving { get; set; }
 
         /// <summary>
-        /// Tiempo estimado de viaje caminado
+        /// Tiempo estimado de viaje en automovil
         /// </summary>
         public string EstimatedTravelTimeDriving { get; set; }
 
         /// <summary>
-        /// Indica la cantidad de productos
+        /// Distancia en metros en automovil teniendo en cuenta el trafico
         /// </summary>
-        public int Stock { get; set; }
+        public double DistanceInMetersDrivingTraffic { get; set; }
+
+        /// <summary>
+        /// Tiempo estimado de viaje en automivil teniendo en cuenta el trafico
+        /// </summary>
+        public string EstimatedTravelTimeDrivingTraffic { get; set; }
     }
 }

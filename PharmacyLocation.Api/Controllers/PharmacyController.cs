@@ -31,6 +31,49 @@ namespace PharmacyLocation.Api.Controllers
             _pharmacyNearbyProductHelper = pharmacyNearbyProductHelper;
         }
 
+
+        /// <summary>
+        /// Obtengo las farmacias con sus datos de distancia
+        /// </summary>
+        /// <param name="latitude"></param>
+        /// <param name="longitude"></param>
+        /// <returns></returns>
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<PharmacyLocationOutput>))]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ApiExceptionResult))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ApiExceptionResult))]
+        [HttpGet()]
+        public async Task<IActionResult> GetSearchPharmacy([FromQuery]double latitude, [FromQuery] double longitude, [FromQuery] double? presicion)
+        {
+
+            List<Pharmacy> pharmacies = await _mediator.Send(new GetPharmacies());
+
+            List<PharmacyOutput> pharmacyOutputs = _mapper.Map<List<PharmacyOutput>>(pharmacies);
+            List<PharmacyLocationOutput> pharmacyProductOutputs = new List<PharmacyLocationOutput>();
+
+            List<PharmacyNearbyProductOutput> pharmacyNearbyProducts = await _pharmacyNearbyProductHelper.GetPharmacyNearbyProduct(new PharmacyNearbyProductInput()
+            {
+                Pharmacies = pharmacyOutputs,
+                UserLocation = new LocationVo()
+                {
+                    Latitude = latitude,
+                    Longitude = longitude,
+                    Presicion = presicion ?? 0
+                }
+            });
+
+            foreach (PharmacyNearbyProductOutput pharmacyNearbyProduct in pharmacyNearbyProducts)
+            {
+
+                PharmacyLocationOutput pharmacyProductOutput
+                    = _mapper.Map<PharmacyLocationOutput>(pharmacyNearbyProduct);
+
+                pharmacyProductOutputs.Add(pharmacyProductOutput);
+            }
+
+            return Ok(pharmacyProductOutputs);
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -38,19 +81,19 @@ namespace PharmacyLocation.Api.Controllers
         /// <param name="latitude"></param>
         /// <param name="longitude"></param>
         /// <returns></returns>
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<PharmacyProductOutput>))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<PharmacyLocationProductOutput>))]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ApiExceptionResult))]
         [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ApiExceptionResult))]
         [HttpGet("products/{id}")]
-        public async Task<IActionResult> GetSearchPharmacyProduct([FromRoute] string id, double latitude, double longitude, double? presicion)
+        public async Task<IActionResult> GetSearchPharmacyProduct([FromRoute] string id, [FromQuery] double latitude, [FromQuery] double longitude, [FromQuery] double? presicion)
         {
             GetSearchPharmacyProduct getSearchPharmacyProducts = new GetSearchPharmacyProduct()
             {
                 ProductId = id
             };
 
-            List<PharmacyProductOutput> pharmacyProductOutputs = new List<PharmacyProductOutput>();
+            List<PharmacyLocationProductOutput> pharmacyProductOutputs = new List<PharmacyLocationProductOutput>();
 
             List<PharmacyProduct> pharmacyProducts = await _mediator.Send(getSearchPharmacyProducts);
             List<string> pharmaciesIds = pharmacyProducts.Select(z => z.IdPharmacy).ToList();
@@ -79,8 +122,8 @@ namespace PharmacyLocation.Api.Controllers
                 {
                     PharmacyProduct pharmacy = pharmacyProducts.First(z => z.IdPharmacy == pharmacyNearbyProduct.PharmacyOutput.Id);
 
-                    PharmacyProductOutput pharmacyProductOutput
-                        = _mapper.Map<PharmacyProductOutput>(pharmacyNearbyProduct);
+                    PharmacyLocationProductOutput pharmacyProductOutput
+                        = _mapper.Map<PharmacyLocationProductOutput>(pharmacyNearbyProduct);
 
                     pharmacyProductOutput.Stock = pharmacy.Stock;
 

@@ -65,6 +65,23 @@ namespace PharmacyLocation.Handlers.Helpers
                   TransportType = TransportType.Walking
               });
 
+                TransportTimeOutputDto transportTimeOutputDrivingTraffic=
+            await _managerEasyTransportTimeMapboxProvider.CalculteTransportTime(new TransportTimeInputDto()
+            {
+
+                DestinationLocation = new LocationInputDto()
+                {
+                    Latitude = pharmacy.Location.Latitude,
+                    Longitude = pharmacy.Location.Longitude
+                },
+                OriginLocation = new LocationInputDto()
+                {
+                    Latitude = pharmacyNearbyProductInput.UserLocation.Latitude,
+                    Longitude = pharmacyNearbyProductInput.UserLocation.Longitude
+                },
+                TransportType = TransportType.DrivingWithTraffic
+            });
+
                 PharmacyNearbyProductOutput pharmacyNearbyProduct = new PharmacyNearbyProductOutput()
                 {
                     PharmacyOutput = pharmacy,
@@ -72,6 +89,8 @@ namespace PharmacyLocation.Handlers.Helpers
                     EstimatedTravelTimeDriving = transportTimeOutputDriving.TravelTime.TimeSpanToFriendlyString(),
                     DistanceInMetersWalking = transportTimeOutputWalking.DistanceInMeters,
                     EstimatedTravelTimeWalking = transportTimeOutputWalking.TravelTime.TimeSpanToFriendlyString(),
+                    DistanceInMetersDrivingTraffic = transportTimeOutputDrivingTraffic.DistanceInMeters,
+                    EstimatedTravelTimeDrivingTraffic = transportTimeOutputDrivingTraffic.TravelTime.TimeSpanToFriendlyString()
                 };
 
                 pharmacyNearbyProducts.Add(pharmacyNearbyProduct);

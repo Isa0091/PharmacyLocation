@@ -21,5 +21,10 @@ namespace PharmacyLocation.Data.Repos
         {
             return await _db.Pharmacies.Where(z=> pharmaciesIds.Contains(z.Id)).ToListAsync();
         }
+
+        public async Task<List<Pharmacy>> GetAllAsync()
+        {
+            return await _db.Pharmacies.ToListAsync();
+        }
     }
 }

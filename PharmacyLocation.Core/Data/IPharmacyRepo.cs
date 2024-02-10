@@ -17,5 +17,11 @@ namespace PharmacyLocation.Core.Data
         /// <param name="pharmaciesIds"></param>
         /// <returns></returns>
         Task<List<Pharmacy>> GetPharmacyAsync(List<string> pharmaciesIds);
+
+        /// <summary>
+        /// Obtengo todas las farmacias
+        /// </summary>
+        /// <returns></returns>
+        Task<List<Pharmacy>> GetAllAsync();
     }
 }

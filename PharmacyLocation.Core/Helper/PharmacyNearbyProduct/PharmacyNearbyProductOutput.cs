@@ -34,5 +34,15 @@ namespace PharmacyLocation.Core.Helper.PharmacyNearbyProduct
         /// Tiempo estimado de viaje caminado
         /// </summary>
         public string EstimatedTravelTimeDriving { get; set; }
+
+        /// <summary>
+        /// Distancia en metros en automovil teniendo en cuenta el trafico
+        /// </summary>
+        public double DistanceInMetersDrivingTraffic { get; set; }
+
+        /// <summary>
+        /// Tiempo estimado de viaje en automivil teniendo en cuenta el trafico
+        /// </summary>
+        public string EstimatedTravelTimeDrivingTraffic { get; set; }
     }
 }

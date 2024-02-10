@@ -9,10 +9,12 @@ namespace PharmacyLocation.Handlers.MappingProfiles
     {
         public PharmacyProfile()
         {
-            CreateMap<PharmacyProduct, PharmacyProductOutput>();
+            CreateMap<PharmacyProduct, PharmacyLocationOutput>();
 
-            CreateMap<PharmacyNearbyProductOutput, PharmacyProductOutput>()
-               .ForMember(x => x.Stock, opt => opt.Ignore());
+            CreateMap<PharmacyNearbyProductOutput, PharmacyLocationOutput>();
+
+            CreateMap<PharmacyNearbyProductOutput, PharmacyLocationProductOutput>()
+              .ForMember(x => x.Stock, opt => opt.Ignore());
 
             CreateMap<Pharmacy, PharmacyOutput>();
         }
