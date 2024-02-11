@@ -14,6 +14,8 @@ namespace PharmacyLocation.Handlers.MappingProfiles
         public CategoryProfile()
         {
             CreateMap<Category, CategoryOutput>();
+
+            CreateMap<PaginatedListOutput<Category>, PaginatedListOutput<CategoryOutput>>();
         }
     }
 }

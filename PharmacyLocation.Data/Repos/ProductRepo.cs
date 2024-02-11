@@ -29,7 +29,7 @@ namespace PharmacyLocation.Data.Repos
 
             int skip = itemsPerPage * (page - 1);
 
-            var items = await _db.Products
+            var items = await _db.Products.OrderBy(z => z.Description.Name)
                                       .Where(where)
                                       .Skip(skip)
                                       .Take(itemsPerPage)
