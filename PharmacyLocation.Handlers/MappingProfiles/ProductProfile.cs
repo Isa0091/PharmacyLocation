@@ -9,9 +9,11 @@ namespace PharmacyLocation.Handlers.MappingProfiles
     {
         public ProductProfile()
         {
-            CreateMap<Product, ProductOutput>();
+            CreateMap<Product, ProductOutput>()
+             .ForMember(x => x.CategoryOutputs, opt => opt.Ignore());
 
             CreateMap<PaginatedListOutput<Product>, PaginatedListOutput<ProductOutput>>();
+                
         }
     }
 }

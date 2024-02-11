@@ -19,7 +19,7 @@ namespace PharmacyLocation.Core.Data
         /// <param name="page"></param>
         /// <param name="itemsPerPage"></param>
         /// <returns></returns>
-        Task<PaginatedListOutput<Product>> GetPaginatedProductsAsync(string? nameContains, int page, int itemsPerPage);
+        Task<PaginatedListOutput<Product>> GetPaginatedProductsAsync(string? nameContains, List<string> categoryIds, int page, int itemsPerPage);
 
         /// <summary>
         /// Obtengo un producto por su identificador

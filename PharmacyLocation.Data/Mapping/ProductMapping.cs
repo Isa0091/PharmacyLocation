@@ -25,6 +25,15 @@ namespace PharmacyLocation.Data.Mapping
             builder.OwnsOne(x => x.Description).Property(x => x.Name).HasMaxLength(300).IsRequired();
             builder.OwnsOne(x => x.Description).Property(x => x.Description).HasMaxLength(500);
 
+            builder.OwnsMany(x => x.CategoryProducts, b2 =>
+            {
+                b2.HasKey("CategoryId", "ProductId");
+                b2.WithOwner("Product").HasForeignKey("ProductId");
+                b2.Property(x => x.CategoryId)
+                .HasMaxLength(Constants.KeyLength)
+                .IsRequired();
+            });
+
         }
     }
 }

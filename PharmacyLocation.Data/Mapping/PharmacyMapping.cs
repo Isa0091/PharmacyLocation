@@ -30,6 +30,13 @@ namespace PharmacyLocation.Data.Mapping
             builder.OwnsOne(x => x.Location).Property(x => x.Latitude);
             builder.OwnsOne(x => x.Location).Property(x => x.Longitude);
             builder.OwnsOne(x => x.Location).Property(x => x.Presicion);
+
+            builder.OwnsMany(x => x.PharmacySchedules, b2 =>
+            {
+                b2.HasKey("Day","PharmacyId");
+                b2.WithOwner("Pharmacy").HasForeignKey("PharmacyId");
+
+            });
         }
     }
 }

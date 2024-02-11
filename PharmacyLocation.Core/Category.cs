@@ -7,26 +7,20 @@ using System.Threading.Tasks;
 
 namespace PharmacyLocation.Core
 {
-    public class Product : RootEntity
+    public class Category : RootEntity
     {
-        /// <summary>
-        /// Identificador del producto
+        /// Identificador de la categoria
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// Descripcion del producto
+        /// Descripcion de la categoria
         /// </summary>
         public DescriptionVo Description { get; set; }
 
         /// <summary>
-        /// Imagen que hace referencia la producto
+        /// Imagen que hace referencia la categoria
         /// </summary>
         public string? UrlImage { get; set; }
-
-        /// <summary>
-        /// Listado de categorias del producto
-        /// </summary>
-        public List<CategoryProduct> CategoryProducts { get; set;}
     }
 }

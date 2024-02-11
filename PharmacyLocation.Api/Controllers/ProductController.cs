@@ -9,6 +9,7 @@ using PharmacyLocation.Core.Provider.PharmacyNearbyProduct;
 using PharmacyLocation.Core.Queries;
 using PharmacyLocation.Handlers.Helpers;
 using PharmacyLocation.Outputs;
+using System.Collections.Generic;
 
 namespace PharmacyLocation.Api.Controllers
 {
@@ -35,13 +36,14 @@ namespace PharmacyLocation.Api.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ApiExceptionResult))]
         [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ApiExceptionResult))]
         [HttpGet()]
-        public async Task<IActionResult> GetSearchProduct([FromQuery] string? NameContains, [FromQuery] int? Page, [FromQuery] int? ItemsPerPage)
+        public async Task<IActionResult> GetSearchProduct([FromQuery] string? NameContains, [FromQuery] List<string> categoryIds , [FromQuery] int? Page, [FromQuery] int? ItemsPerPage)
         {
 
             GetSearchProduct getSearchProduct = new GetSearchProduct()
             {
                  ItemsPerPage = ItemsPerPage,
                  NameContains = NameContains,
+                 CategoryIds = categoryIds,
                  Page = Page
             };
 
@@ -49,6 +51,18 @@ namespace PharmacyLocation.Api.Controllers
 
             PaginatedListOutput<ProductOutput> paginatedListProductOutput =
                 _mapper.Map<PaginatedListOutput<ProductOutput>>(paginatedListProduct);
+
+
+            List<CategoryOutput> categoryOutputs = await GetCategoriesProduct(paginatedListProduct.Items);
+
+
+            foreach (ProductOutput productOutput in paginatedListProductOutput.Items)
+            {
+                Product product = paginatedListProduct.Items.First(x => x.Id == productOutput.Id);
+
+                List<CategoryOutput> categoriesProduct = categoryOutputs.Where(z=> product.CategoryProducts.Any(x=> x.CategoryId == z.Id)).ToList() ;
+                productOutput.CategoryOutputs = categoriesProduct;
+            }
 
             return Ok(paginatedListProductOutput);
         }
@@ -70,7 +84,42 @@ namespace PharmacyLocation.Api.Controllers
 
             ProductOutput productOutput = _mapper.Map<ProductOutput>(product);
 
+            List<CategoryOutput> categoryOutputs = await GetCategoriesProduct(new List<Product> { product });
+             productOutput.CategoryOutputs = categoryOutputs;
+
             return Ok(productOutput);
         }
+
+
+        #region Metodos provados
+
+        private async Task AddCategoriesProducOutput()
+        {
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="product"></param>
+        /// <returns></returns>
+        private async Task<List<CategoryOutput>> GetCategoriesProduct(List<Product> products)
+        {
+            List<CategoryProduct> categoryProducts = products.SelectMany(x => x.CategoryProducts).ToList();
+            List<string> categoriesIds = categoryProducts.Select(x => x.CategoryId).ToList();
+
+            GetCategoriesByIds getCategoriesByIds = new GetCategoriesByIds()
+            {
+                CategoriesIds = categoriesIds
+            };
+
+            List<Category> categories = await _mediator.Send(getCategoriesByIds);
+
+            List<CategoryOutput> categoryOutput = _mapper.Map<List<CategoryOutput>>(categories);
+
+            return categoryOutput;
+        }
+
+        #endregion
     }
 }

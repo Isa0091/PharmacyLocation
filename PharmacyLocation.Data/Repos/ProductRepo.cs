@@ -20,9 +20,12 @@ namespace PharmacyLocation.Data.Repos
             _db = db;
         }
 
-        public async Task<PaginatedListOutput<Product>> GetPaginatedProductsAsync(string? nameContains, int page, int itemsPerPage)
+        public async Task<PaginatedListOutput<Product>> GetPaginatedProductsAsync(string? nameContains, List<string> categoryIds, int page, int itemsPerPage)
         {
-            Expression<Func<Product, bool>> where = x => (string.IsNullOrEmpty(nameContains) || x.Description.Name.Contains(nameContains));
+            bool withOutCategory = categoryIds.Any() == false;
+
+            Expression<Func<Product, bool>> where = x => (string.IsNullOrEmpty(nameContains) || x.Description.Name.Contains(nameContains)) &&
+                                                          (withOutCategory || x.CategoryProducts.Any(z=> categoryIds.Contains(z.CategoryId)));
 
             int skip = itemsPerPage * (page - 1);
 

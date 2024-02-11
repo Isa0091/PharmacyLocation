@@ -12,6 +12,9 @@ namespace PharmacyLocation.Core
     /// </summary>
     public class Pharmacy : RootEntity
     {
+        public Pharmacy() { 
+          PharmacySchedules = new List<PharmacySchedule>();
+        }
         /// <summary>
         /// Identificador de la farmacia
         /// </summary>
@@ -30,5 +33,14 @@ namespace PharmacyLocation.Core
         /// Imagen que hace referencia la producto
         /// </summary>
         public string? UrlImage { get; set; }
+
+        /// <summary>
+        /// Indica que la farmacia es 24/7
+        /// </summary>
+        public bool IsOpenAllHours { get; set; }
+        /// <summary>
+        /// Indica los horarios de la farmacia
+        /// </summary>
+        public List<PharmacySchedule> PharmacySchedules { get; set; }
     }
 }

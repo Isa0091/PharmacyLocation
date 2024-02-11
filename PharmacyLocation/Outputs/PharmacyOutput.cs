@@ -21,8 +21,18 @@ namespace PharmacyLocation.Outputs
         public DescriptionVo Description { get; set; }
 
         /// <summary>
+        /// Indica que la farmacia es 24/7
+        /// </summary>
+        public bool IsOpenAllHours { get; set; }
+
+        /// <summary>
         /// Hubicacion de la farmacia
         /// </summary>
         public LocationVo Location { get; set; }
+
+        /// <summary>
+        /// Indica los horarios de la farmacia
+        /// </summary>
+        public List<PharmacyScheduleOutput> PharmacySchedules { get; set; }
     }
 }

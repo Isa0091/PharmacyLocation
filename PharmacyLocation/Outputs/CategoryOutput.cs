@@ -6,26 +6,20 @@ using System.Threading.Tasks;
 
 namespace PharmacyLocation.Outputs
 {
-    public class ProductOutput
+    public class CategoryOutput
     {
-        /// <summary>
-        /// Identificador del producto
+        /// Identificador de la categoria
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// Descripcion del producto
+        /// Descripcion de la categoria
         /// </summary>
         public DescriptionVo Description { get; set; }
 
         /// <summary>
-        /// Imagen que hace referencia la producto
+        /// Imagen que hace referencia la categoria
         /// </summary>
         public string? UrlImage { get; set; }
-
-        /// <summary>
-        /// Categorias del producto
-        /// </summary>
-        public List<CategoryOutput> CategoryOutputs { get; set; }
     }
 }

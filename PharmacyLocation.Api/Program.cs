@@ -42,6 +42,7 @@ builder.Services.AddScoped<IFavoriteUserProductRepo, FavoriteUserProductRepo>();
 builder.Services.AddScoped<IPharmacyProductRepo, PharmacyProductRepo>();
 builder.Services.AddScoped<IPharmacyRepo, PharmacyRepo>();
 builder.Services.AddScoped<IProductRepo, ProductRepo>();
+builder.Services.AddScoped<ICategoryRepo, CategoryRepo>();
 
 //helpers
 builder.Services.AddScoped<IPharmacyNearbyProductHelper, PharmacyNearbyProductHelper>();
@@ -71,6 +72,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(PharmacyProfile));
 builder.Services.AddAutoMapper(typeof(ProductProfile));
 builder.Services.AddAutoMapper(typeof(UserProfile));
+builder.Services.AddAutoMapper(typeof(CategoryProfile));
 
 string? mapBoxToken = builder.Configuration["MapboxToken"];
 

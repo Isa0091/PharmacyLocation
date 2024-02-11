@@ -49,6 +49,8 @@ namespace PharmacyLocation.Api.Controllers
             List<Pharmacy> pharmacies = await _mediator.Send(new GetPharmacies());
 
             List<PharmacyOutput> pharmacyOutputs = _mapper.Map<List<PharmacyOutput>>(pharmacies);
+
+
             List<PharmacyLocationOutput> pharmacyProductOutputs = new List<PharmacyLocationOutput>();
 
             List<PharmacyNearbyProductOutput> pharmacyNearbyProducts = await _pharmacyNearbyProductHelper.GetPharmacyNearbyProduct(new PharmacyNearbyProductInput()

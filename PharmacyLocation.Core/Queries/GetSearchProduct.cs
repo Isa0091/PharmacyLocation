@@ -16,6 +16,11 @@ namespace PharmacyLocation.Core.Queries
         public string? NameContains { get; set; }
 
         /// <summary>
+        /// Listado de categorias
+        /// </summary>
+        public List<string> CategoryIds { get; set; }
+
+        /// <summary>
         /// La pagina que se quiere navegar
         /// </summary>
         public int? Page { get; set; }

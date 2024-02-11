@@ -27,7 +27,7 @@ namespace PharmacyLocation.Handlers.Queries
         public async Task<PaginatedListOutput<Product>> Handle(GetSearchProduct request, CancellationToken cancellationToken)
         {
             PaginatedListOutput<Product> paginatedListOutput =
-               await _productRepo.GetPaginatedProductsAsync(request.NameContains,
+               await _productRepo.GetPaginatedProductsAsync(request.NameContains,request.CategoryIds,
                request.Page ?? 1, request.ItemsPerPage ?? _paginationSettings.Value.ItemsPerPage);
 
             return paginatedListOutput;
